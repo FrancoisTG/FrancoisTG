@@ -1,0 +1,43 @@
+require 'open-uri'
+require 'nokogiri'
+require 'csv'
+# We want to scrape movies from a search :
+# * the move title
+# * the imdb rating
+
+# select movie title/href from search : .result_text a
+# select imdb rating from show page : .ratingValue span
+
+@movies = []
+# A movie
+#{
+#  title: "Batman",
+#  rating: 7.6
+#}
+
+# 1 Ask user which movie to search
+puts "What movie title?"
+movie_title = gets.chomp
+# 2 Scraping no imdb
+webpage = open("http://www.imdb.com/find?ref_=nv_sr_fn&q=#{movie_title}&s=tt")
+document = Nokogiri::HTML(webpage)
+document.search(".result_text a").each do |object|
+  title_hash = {
+    title: object.text,
+    href: object.attribute("href").value
+  }
+  # Now let's get the rating!
+  movie_doc = Nokogiri::HTML(open("http://www.imdb.com#{title_hash[:href]}"))
+  rating = movie_doc.search('.ratingValue strong span').first
+  rating = rating.text if rating
+  title_hash[:rating] = rating
+  @movies << title_hash
+end
+# 3 Save to CSV file 
+csv_options = { col_sep: ',', force_quotes: true, quote_char: '"' }
+CSV.open('movies.csv', 'wb', csv_options) do |file|
+  file << %w(title href rating)
+  @movies.each do |movie|
+    file << [movie[:title], movie[:href], movie[:rating]]
+  end
+end

@@ -1,0 +1,23 @@
+<div class="container article-show">
+  <h1><%=@article.title%></h1>
+  <%=Kramdown::Document.new(@article.content).to_html.html_safe%>
+</div>
+
+
+
+
+
+<div class="navbar navbar-default">
+<ul class="nav navbar-nav list-inline">
+  <li><%= link_to "Delete article", article_path(@article),
+      method: :delete,
+      data: { confirm: "Are you sure?" } %></li>
+  <li><%= link_to "Edit article", edit_article_path(@article) %></li>
+ </ul>
+
+
+
+
+
+
+</div>

@@ -10,6 +10,11 @@
   padding-bottom: 5em;
 }
 
+.small-padded {
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
 // Backgrounds
 .bg-black {
   background: #4a4a4a;
@@ -22,4 +27,32 @@
 }
 .bg-dark-blue {
   background: #3b5998;
+}
+
+.resto-banner{
+  border-bottom: solid 1px #DEDEDE;
+}
+
+.bg-light-grey {
+  background: #DEDEDE;
+}
+
+.restaurant-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.link-edit{
+  text-decoration: none;
+  color: #616161;
+}
+
+.link-edit:hover{
+  text-decoration: none;
+  color: #282828;
+}
+
+#error_explanation{
+  color: red;
 }

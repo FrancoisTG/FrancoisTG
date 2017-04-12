@@ -1,0 +1,17 @@
+<div class="container">
+
+  <% @restaurants.each do |restaurant|%>
+    <div class="resto-banner">
+      <h2><%= link_to restaurant.name, restaurant_path(restaurant) %></h2>
+        <ul class="list-inline">
+          <li>Category: <%=restaurant.category%></li>
+          <li>Adress: <%=restaurant.address%></li>
+          <li>Phone number: <%=restaurant.phone_number%></li>
+        </ul>
+    </div>
+  <% end %>
+
+
+</div>
+
+

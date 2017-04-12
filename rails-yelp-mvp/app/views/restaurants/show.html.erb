@@ -1,0 +1,41 @@
+<div class="container bg-light-grey">
+  <div class="restaurant-header">
+    <div>
+      <h1><%=@restaurant.name%></h1>
+      <p>Category: <%=@restaurant.category%></p>
+
+      <ul class="list-inline">
+        <li>Adress: <%=@restaurant.address%></li>
+        <li>Phone number: <%=@restaurant.phone_number%></li>
+      </ul>
+    </div >
+    <div class="text-center">
+
+     <%= link_to '<i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i><br>Add a review'.html_safe, new_restaurant_review_path(@restaurant), :class => "link-edit" %>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <% @restaurant.reviews.each do |review|%>
+    <div class="small-padded resto-banner">
+      <h4>Rating: <%=review.rating%></h4>
+      <p><%=review.content%></p>
+
+    </div>
+  <% end %>
+</div>
+
+
+
+<!-- <div class="container bg-light-grey">
+  <ul class="list-inline">
+    <li><%= link_to "Delete restaurant", restaurant_path(@restaurant),
+      method: :delete,
+      data: { confirm: "Are you sure?" } %></li>
+    <li><%= link_to "Edit restaurant", edit_restaurant_path(@restaurant) %></li>
+    <li><%= link_to "Add a review", new_restaurant_review_path(@restaurant) %></li>
+  </ul>
+</div> -->
+
+<!-- <i class="fa fa-pencil-square-o" aria-hidden="true"></i> -->
